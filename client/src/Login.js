@@ -22,7 +22,7 @@ export default class Login extends React.Component {
         axios.post(`https://vacation-planner-bw.herokuapp.com/api/users/login`, this.state)
         .then(response => {
             console.log(response)
-           this.props.history.push('/') 
+           this.props.history.push('/vacations') 
         })
         .catch(error => {
             console.log(error)
