@@ -21,8 +21,8 @@ export default class Login extends React.Component {
         e.preventDefault();
         axios.post(`https://vacation-planner-bw.herokuapp.com/api/users/login`, this.state)
         .then(response => {
-            console.log(response)
-           this.props.history.push('/') 
+           localStorage.setItem('token', response.data.token)
+           this.props.history.push('/vacations') 
         })
         .catch(error => {
             console.log(error)
