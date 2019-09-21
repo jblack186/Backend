@@ -3,7 +3,7 @@ const Vacation = require('./vacation-model.js');
 const restricted = require('../auth/authenticate-middleware.js')
 
 
-router.get('/', restricted, (req, res) => {
+router.get('/', (req, res) => {
   Vacation.find()
   .then(vacation => {
     res.status(200).json(vacation);
