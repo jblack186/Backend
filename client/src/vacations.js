@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import axios from 'axios';
 
 export default class Vacations extends React.Component {
@@ -10,11 +10,11 @@ export default class Vacations extends React.Component {
 
     }
 
-    componentDidMount() {
-        axios.get('https://vacation-planner-bw.herokuapp.com/api/vacations')
+    componentDidMount(){
+        axios
+        .get('https://vacation-planner-bw.herokuapp.com/api/vacations')
             .then(res => {
-                console.log(res)
-                this.setState({vacations: res.data})
+                this.setState(() => ({vacations: res.data}))
             })
             .catch(err => {
                 console.log(err)
@@ -22,11 +22,12 @@ export default class Vacations extends React.Component {
 
     }
     render(){
+        console.log(this.state.vacations)
         return (
             <div>
-                {this.state.vacations.map(vac => {
+                {/* {this.state.vacations.map(vac => {
                   return  <p>{vac.destination}</p>
-                })}
+                })} */}
             </div>
         )
     }
