@@ -1,25 +1,30 @@
-// Update with your config settings.
+require('dotenv').config();
 
 module.exports = {
-
   development: {
-    client: 'sqlite3',
-    useNullAsDefault: true, // needed for sqlite
-    connection: {
-      filename: './database/vacations.db3',
-    },
-    migrations: {
-      directory: './database/migrations'
-    },
-    seeds: {
-      directory: './database/seeds'
-    },
-    // add the following
-    pool: {
-      afterCreate: (conn, done) => {
-        // runs after a connection is made to the sqlite engine
-        conn.run('PRAGMA foreign_keys = ON', done); // turn on FK enforcement
+      client: 'postgresql',
+      connection: {
+         
+         
+          database: './database/vacations.db3'
       },
-    },
-  }, 
+      migrations: {
+          directory: __dirname + '/database/migrations',
+      },
+      seeds: {
+          directory: __dirname + '/database/seeds',
+      },
+  },
+  production: {
+      client: 'postgresql',
+      connection: process.env.DATABASE_URL,
+      migrations: {
+          directory: __dirname + '/database/migrations',
+      },
+      seeds: {
+          directory: __dirname + '/database/seeds',
+      },
+  },
 };
+
+
