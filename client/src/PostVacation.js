@@ -18,6 +18,7 @@ export default class PostVacation extends React.Component {
  
 
     addVacation = (e) => {
+
         e.preventDefault();
         axios
         .post('https://vacation-planner-bw.herokuapp.com/api/vacations', this.state)
@@ -41,6 +42,7 @@ export default class PostVacation extends React.Component {
         console.log(this.state)
         return (
             <div>
+                <h1>{localStorage.getItem('user')}</h1>
                
                 <form onSubmit={this.addVacation}>
               
