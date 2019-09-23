@@ -5,6 +5,7 @@ import Register from './Register';
 import {Route} from 'react-router-dom';
 import Vacations from './Vacations';
 import PostVacation from './PostVacation';
+import VacationPage from './VacationPage';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Route exact path='/login' component={ Login } />
       <Route exact path='/vacations' component={ Vacations } />
       <Route exact path='/postvacation' component={ PostVacation } />
+      <Route exact path='/vacationpage' component={ VacationPage } />
 
 
     </div>

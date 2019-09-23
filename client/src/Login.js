@@ -6,7 +6,7 @@ export default class Login extends React.Component {
         super()
         this.state = {
             username: '',
-            password: ''
+            password: '',
         }
         console.log(this.state)
        
@@ -22,23 +22,21 @@ export default class Login extends React.Component {
         axios.post(`https://vacation-planner-bw.herokuapp.com/api/users/login`, this.state)
         .then(response => {
            localStorage.setItem('token', response.data.token)
+           localStorage.setItem('user', response.data.message)
+
+           console.log(response.data.message)
            this.props.history.push('/vacations') 
         })
         .catch(error => {
             console.log(error)
         })
-      this.setState({
-        name: '',
-        age: '',
-        height: ''
-      });
+      
     }
     
 
 
     render() {
-        console.log(this.state.username)
-        console.log(this.state.password)
+        console.log(this.state.user)
         return (
             <div>
                 <form onSubmit={this.login}>

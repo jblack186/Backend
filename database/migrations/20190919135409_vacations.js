@@ -28,12 +28,24 @@ exports.up = function(knex) {
         .references('id').inTable('users')
 
    })
+
+   .createTable('comments', tbl => {
+     tbl.increments();
+     tbl.text('comment', 255)
+     // foreign key here is linked to vacation table
+     tbl.integer('vacations_id')
+     .unsigned()
+     .notNullable()
+     .references('id').inTable('vacations')
+     
+   })
   
 };
 
 
 exports.down = function(knex) {
     return knex.schema
+    .dropTableIfExists('comments')
     .dropTableIfExists('vacations')
     .dropTableIfExists('users');
 
