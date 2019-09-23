@@ -40,7 +40,9 @@ export default class Vacations extends React.Component {
         return (
             <div>
                 {this.state.vacations.map(vac => {
-                  return <p>{vac.destination}</p>
+                  return <div> <p>{vac.destination}</p>
+                  <p>{vac.username}</p>
+                  </div>
                 })}
     
             </div>

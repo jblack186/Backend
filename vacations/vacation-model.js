@@ -10,7 +10,7 @@ module.exports = {
 function find() {
     return db('vacations as v')
     .join('users as u', 'u.id', 'v.user_id' )
-    .select('u.username', 'v.destination' )
+    .select('u.username', 'v.id', 'v.destination', 'v.descriptiion', 'v.cost', 'v.comments', 'v.user_id' )
 
 
 }
