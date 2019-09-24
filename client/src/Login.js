@@ -23,8 +23,9 @@ export default class Login extends React.Component {
         .then(response => {
            localStorage.setItem('token', response.data.token)
            localStorage.setItem('user', response.data.message)
+           localStorage.setItem('id', response.data.user_id)
 
-           console.log(response.data)
+           console.log(response.data.user_id)
            this.props.history.push('/vacations') 
         })
         .catch(error => {

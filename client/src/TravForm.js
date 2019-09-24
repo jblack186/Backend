@@ -8,10 +8,23 @@ import * as yup from 'yup';
 // import '../travelForm.css'
 
 const TravelForm = ({status, touched, errors}) => {
-    const [vacations, setVacations] = useState([])
-    const addDestination = () =>{
-    
+    const [vacations, setVacations, destination] = useState([])
+    const addDestination = (e) =>{
+        e.preventDefault();
+        const token = localStorage.getItem('token')
+        axios.post('https://vacation-planner-bw.herokuapp.com/api/vacations/destination', destination)
+        .then(response => {
+           
+
+           console.log(response.data)
+        })
+        .catch(error => {
+            console.log(error)
+        })
+      
     }
+    
+    
     const addActivity = () => {
 
     }
