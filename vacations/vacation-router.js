@@ -14,7 +14,41 @@ router.get('/', (req, res) => {
   })
 })
 
-router.get('/:id', restricted, async(req, res) => {
+router.get('/destination', (req, res) => {
+  Vacation.findDestination()
+  .then(destinations => {
+    console.log(destinations)
+    res.status(200).json(destinations);
+  })
+  .catch(err => {
+      console.log(err);
+      res.send(err)
+  })
+})
+
+router.get('/activities', (req, res) => {
+  Vacation.findActivities()
+  .then(activities => {
+    res.status(200).json(activities);
+  })
+  .catch(err => {
+      console.log(err);
+      res.send(err)
+  })
+})
+
+router.get('/comments', (req, res) => {
+  Vacation.findComments()
+  .then(comments => {
+    res.status(200).json(comments);
+  })
+  .catch(err => {
+      console.log(err);
+      res.send(err)
+  })
+})
+
+router.get('/:id', async(req, res) => {
   try {
     const id = req.params.id;
     const user = await Vacation.findById(id)
@@ -43,11 +77,51 @@ router.post('/', (req, res) => {
       message: 'could not add vacation'
     })
   })
-
-  
   });
 
-  router.get('/:id/comments', restricted, async(req, res) => {
+  router.post('/destination', (req, res) => {
+    let destination = req.body;
+   Vacation.addDestination(destination)
+   .then(destination => {
+     res.status(201).json(destination)
+   })
+   .catch(err => {
+     console.log(err)
+     res.status(401).json({
+       message: 'could not add destination'
+     })
+   })
+   });
+
+   router.post('/activities', (req, res) => {
+    let activities = req.body;
+   Vacation.addActivities(activities)
+   .then(activities => {
+     res.status(201).json(activities)
+   })
+   .catch(err => {
+     console.log(err)
+     res.status(401).json({
+       message: 'could not add destination'
+     })
+   })
+   });
+
+   router.post('/comments', (req, res) => {
+    let comments = req.body;
+   Vacation.addComment(comments)
+   .then(comments => {
+     res.status(201).json(comments)
+   })
+   .catch(err => {
+     console.log(err)
+     res.status(401).json({
+       message: 'could not add comments'
+     })
+   })
+   });  
+
+  router.get('/:id/comments', async(req, res) => {
     try {
       const { id } = req.params;
       const comments = await Vacation.findComments(id)
@@ -62,7 +136,7 @@ router.post('/', (req, res) => {
 
   })
 
-  router.post('/:id/comments', restricted, async(req, res) => {
+  router.post('/:id/comments', async(req, res) => {
     try {
       const { id } = req.params
       req.body.vacations_id = id
