@@ -44,7 +44,7 @@ router.post('/register', (req, res) => {
             const token = getJwt(user) //this line gets token
         res.status(200).json({
             message: `Welcome ${user.username}`,
-            user_id: `${user.user_id}`,
+            user_id: `${user.id}`,
             token
         });
     } else {
