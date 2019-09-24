@@ -6,15 +6,33 @@ module.exports = {
     findById,
     add,
     addComment,
-    findComments
+    addDestination,
+    addActivities,
+    findComments,
+    findActivities,
+    findDestination
 }
 
 function find() {
     return db('vacations as v')
     .join('users as u', 'u.id', 'v.user_id' )
-    .select('u.username', 'v.id', 'v.destination', 'v.description', 'v.cost', 'v.comments', 'v.user_id' )
 
+}
 
+function findDestination() {
+    return db('destination as d')
+    .join('vacations as v', 'v.id', 'd.vacations_id')
+    .select('d.destination', 'v.cost')
+}
+
+function findActivities() {
+    return db('activities as a')
+    .join('vacations as v', 'v.id', 'a.vacations_id')
+}
+
+function findComments() {
+    return db('comments as c')
+    .join('vacations as v', 'v.id', 'c.vacations_id')
 }
 
 function findBy(filter) {
@@ -31,22 +49,25 @@ function findById(id) {
 function add(vacationData) {
     return db('vacations as v')
     .insert(vacationData)
-    .join('users as u', 'u.id', 'v.user_id')
-    
-
-    
 }
+
+function addDestination(destinationData) {
+    return db('destination as d')
+    .insert(destinationData)
+}
+
+function addActivities(activitiesData) {
+    return db('activities as a')
+    .insert(activitiesData)
+}
+
+
 
 function addComment(comment) {
-    return db('comments').insert(comment)
+    return db('comments')
+    .insert(comment)
     
 
     
 }
 
-function findComments(vacation_id) {
-    return db('comments as c')
-    .join('vacations as v', 'v.id', 'c.vacations_id')
-    .select('c.comment')
-    .where('c.vacations_id', vacation_id)
-}
