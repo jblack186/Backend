@@ -7,9 +7,9 @@ export default class PostVacation extends React.Component {
         super()
         this.state = {
                 destination: '',
-                start_date: '',
-                end_date: '',
-                cost: '',
+                start_date: 2,
+                end_date: 2,
+                cost: 400,
                 activities: '',
                 user_id: ''
         }
@@ -80,7 +80,7 @@ export default class PostVacation extends React.Component {
                     />
                     <input
                         placeholder='cost'
-                        value={Number(this.state.cost)}
+                        value={this.state.cost}
                         onChange={this.changeHandler}
                         name='cost'
                     />
