@@ -14,6 +14,8 @@ exports.up = function(knex) {
     tbl.increments();
     tbl.string('destination', 256)
     .notNullable()
+    tbl.string('description', 256)
+    .notNullable()
     tbl.integer('start_date')
     .notNullable()
     tbl.integer('end_date')

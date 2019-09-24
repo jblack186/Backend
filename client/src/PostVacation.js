@@ -7,11 +7,13 @@ export default class PostVacation extends React.Component {
         super()
         this.state = {
                 destination: '',
-                start_date: 2,
-                end_date: 2,
-                cost: 400,
+                start_date: '',
+                end_date: '',
+                cost: '',
                 activities: '',
-                user_id: ''
+                user_id: '',
+                activity: ''
+                
         }
     }
 
@@ -23,11 +25,10 @@ export default class PostVacation extends React.Component {
 
     addVacation = (e) => {
         e.preventDefault();
-        const { destination, user_id} = this.state
+        const { destination, user_id, start_date, end_date, cost, activities} = this.state
 
-        e.preventDefault();
         axios
-        .post('https://vacation-planner-bw.herokuapp.com/api/vacations', this.state )
+        .post('https://vacation-planner-bw.herokuapp.com/api/vacations', {destination, user_id, start_date, end_date, cost, activities} )
             .then(res => {
                 console.log(res)
             })
@@ -42,13 +43,23 @@ export default class PostVacation extends React.Component {
         this.setState({[e.target.name]: e.target.value})
     }
 
-   
+   activity = (e, newActivity) => {
+       e.preventDefault();
+       const {activity} = this.state
+       newActivity = activity
+       this.setState({activities: this.state.activities.concat(newActivity)})
+       
+       
+   }
 
     render(){
-        console.log(this.state.vacations_id)
+        
+       
+        console.log(this.state.activities)
 
         return (
             <div>
+                <p>{this.state.activities}</p>
                 <h1>{localStorage.getItem('user')}</h1>
                
                 <form onSubmit={this.addVacation}>
@@ -59,6 +70,7 @@ export default class PostVacation extends React.Component {
                         onChange={this.changeHandler}
                         name='destination'
                     />
+
               
                     <input
                         placeholder='start_date'
@@ -73,16 +85,19 @@ export default class PostVacation extends React.Component {
                         name='end_date'
                     />
                     <input
-                        placeholder='activities'
-                        value={this.state.activities}
+                        placeholder='activity'
+                        value={this.state.activity}
                         onChange={this.changeHandler}
-                        name='activities'
+                        name='activity'
+
                     />
+
                     <input
                         placeholder='cost'
                         value={this.state.cost}
                         onChange={this.changeHandler}
                         name='cost'
+                        
                     />
                     <input
                         placeholder='comments'
@@ -93,6 +108,7 @@ export default class PostVacation extends React.Component {
                   
                     <button type='submit'>Add</button>
                 </form>
+                <button onClick={this.activity}>push</button>
             </div>
         )
     }
