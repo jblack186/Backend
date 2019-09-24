@@ -14,9 +14,9 @@ exports.up = function(knex) {
     tbl.increments();
     tbl.string('destination', 256)
     .notNullable()
-    tbl.float('start_date')
+    tbl.integer('start_date')
     .notNullable()
-    tbl.float('end_date')
+    tbl.integer('end_date')
     .notNullable()
     tbl.integer('cost')
     tbl.text('activities', 256)
