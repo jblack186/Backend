@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import { isInteger } from 'formik';
 
 export default class PostVacation extends React.Component {
     constructor() {
@@ -8,25 +9,25 @@ export default class PostVacation extends React.Component {
                 destination: '',
                 start_date: '',
                 end_date: '',
-                description: '',
+                cost: '',
                 activities: '',
-                comments: '',
-                vacations_id: ''
+                user_id: ''
         }
     }
 
     componentDidMount() {
-        this.setState({vacations_id: Number(localStorage.getItem('id'))})
+        this.setState({user_id: Number(localStorage.getItem('id'))})
+        
     }
  
 
-    addVacationDestination = (e) => {
-        
-        const { destination, vacations_id} = this.state
+    addVacation = (e) => {
+        e.preventDefault();
+        const { destination, user_id} = this.state
 
         e.preventDefault();
         axios
-        .post('https://vacation-planner-bw.herokuapp.com/api/vacations/destination', {destination, vacations_id})
+        .post('https://vacation-planner-bw.herokuapp.com/api/vacations', this.state )
             .then(res => {
                 console.log(res)
             })
@@ -51,24 +52,23 @@ export default class PostVacation extends React.Component {
                 <h1>{localStorage.getItem('user')}</h1>
                
                 <form onSubmit={this.addVacation}>
-                <form onSubmit={this.addVacationDestination}>
+                
                     <input
                         placeholder='destination'
                         value={this.state.destination}
                         onChange={this.changeHandler}
                         name='destination'
                     />
-                    <button type="submit">Add</button>
-                </form>
+              
                     <input
                         placeholder='start_date'
-                        value={this.state.startt_date}
+                        value={this.state.start_date}
                         onChange={this.changeHandler}
                         name='start_date'
                     />
                     <input
                         placeholder='end_date'
-                        value={this.state.endt_date}
+                        value={this.state.end_date}
                         onChange={this.changeHandler}
                         name='end_date'
                     />
@@ -80,7 +80,7 @@ export default class PostVacation extends React.Component {
                     />
                     <input
                         placeholder='cost'
-                        value={this.state.cost}
+                        value={Number(this.state.cost)}
                         onChange={this.changeHandler}
                         name='cost'
                     />

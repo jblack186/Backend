@@ -18,7 +18,7 @@ exports.up = function(knex) {
     .notNullable()
     tbl.float('end_date')
     .notNullable()
-    tbl.float('cost')
+    tbl.integer('cost')
     tbl.text('activities', 256)
     .notNullable()
     tbl.timestamps(true, true)
