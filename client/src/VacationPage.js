@@ -2,28 +2,25 @@ import React from 'react';
 import axios from 'axios';
 
 export default class VacationPage extends React.Component {
-    constructor(){
-        super()
+    constructor(props){
+        super(props)
     }
 
-    componentDidMount(){
-        const token = localStorage.getItem('token')
-        axios
-        .get('https://vacation-planner-bw.herokuapp.com/api/vacations', { 'headers': {'Authorization': token}})
-            .then(res => {
-                this.setState(() => ({vacations: res.data}))
-                console.log(res)
-            })
-            .catch(err => {
-                console.log(err)
-            })
+
             
-    }
+    
 
     render() {
+        const vacation = this.props.vacations.find(i => String(i.id) === this.props.match.params.id)
+console.log(vacation)
+if (!vacation) {
+    return <div>Loading...</div>
+}
         return (
             <div>
-
+                <p>{vacation.username}</p>
+                <p>{vacation.destination}</p>
+                <p>{vacation.description}</p>
             </div>
         )
     }

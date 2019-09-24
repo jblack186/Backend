@@ -3,10 +3,10 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 export default class Vacations extends React.Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
-            vacations: [],
+            vacations: props.vacations,
             user: localStorage.getItem('user')
         }
 
@@ -36,15 +36,21 @@ export default class Vacations extends React.Component {
    
 
     render(){
+        console.log(this.props)
+        const id = this.props.vacations.id
+        const vacation = this.props.vacations.find(i => String(i.id) === this.props.match.params.id)
 
+        console.log(vacation)
         return (
             <div>
                 <h2>{this.state.user}</h2>
-                {this.state.vacations.map(vac => {
-                  return <Link exact to ='/vacationpage'><p>{vac.destination}</p></Link>
+                {this.props.vacations.map(vac => {
+                  return <Link exact to ={`/vacationpage/${vac.id}`}> 
+                  
+                  <p>{vac.destination}</p> </Link>
                 })}
     
             </div>
         )
     }
-}
+                }
