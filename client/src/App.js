@@ -33,7 +33,7 @@ class App extends React.Component {
   render() {  
   return (
     <div className="App">
-          <Route exact path='/form' component={ TravForm } />
+          {/* <Route exact path='/form' component={ TravForm } /> */}
 
       <Route exact path='/register' component={ Register } />
       <Route exact path='/login' component={ Login } />
