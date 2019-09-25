@@ -7,7 +7,8 @@ export default class Vacations extends React.Component {
         super(props)
         this.state = {
             vacations: props.vacations,
-            user: localStorage.getItem('user')
+            user: localStorage.getItem('user'),
+            id: localStorage.getItem('id')
         }
 
     }
@@ -39,11 +40,11 @@ export default class Vacations extends React.Component {
         console.log(this.props.vacations)
         const id = this.props.vacations.id
         const vacation = this.props.vacations.find(i => String(i.id) === this.props.match.params.id)
-
-        console.log(vacation)
+        const userId = this.state.id
+        console.log(userId)
         return (
             <div>
-                <h2>{this.state.user}</h2>
+                <Link exact to={`/messenger/${userId}`} ><h2>{this.state.user}</h2></Link>
                 {this.props.vacations.map(vac => {
                   return <Link exact to ={`/vacationpage/${vac.id}`}> 
                   

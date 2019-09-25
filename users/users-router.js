@@ -9,8 +9,8 @@ const secrets = require('../config/secrets.js')
 
 router.get('/', restricted, (req, res) => {
   Users.find()
-  .then(user => {
-    res.json({ loggedInUser: req.user.username, user});
+  .then(users => {
+    res.json(users);
   })
   .catch(err => {
       console.log(err);
@@ -57,6 +57,34 @@ router.post('/register', (req, res) => {
         console.log(error)
         res.status(500).json(error)
     })
+})
+
+router.get('/messages', (req, res) => {
+    Users.findMessages()
+    .then(messages => {
+        res.status(200).json(messages)
+    })
+    .catch(err => {
+        console.log(err)
+        res.status(500).json({
+            message: 'could not find messages'
+        })
+    })
+})
+
+router.get('/messages/:id', async(req, res) => {
+    try {
+    const {id} = req.params;
+    
+    const message = await Users.findMessagesById(id)    
+        res.status(200).json(message)
+    }
+    catch (err)  {
+        console.log(err)
+        res.status(500).json({
+            message: 'could not find message'
+        })
+    }   
 })
 
   function getJwt(user) {
