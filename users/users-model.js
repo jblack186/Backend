@@ -11,7 +11,9 @@ module.exports = {
 }
 
 function find() {
-    return db('users')
+    return db('users as u')
+    .join('vacations as v', 'v.user_id', 'u.id')
+    .select('u.username', 'v.id', 'v.destination', 'v.description', 'v.start_date', 'v.end_date', 'v.cost', 'v.activities', 'v.user_id')
 }
 
 function findBy(filter) {

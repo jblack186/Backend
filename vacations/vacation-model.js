@@ -11,6 +11,8 @@ module.exports = {
 
 function find() {
     return db('vacations as v')
+    .join('users as u', 'vacations')
+    .select('')
 
 }
 
