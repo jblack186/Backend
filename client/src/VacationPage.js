@@ -55,21 +55,22 @@ export default class VacationPage extends React.Component {
 
     render() {
         console.log(this.props.vacations)
-        const vacation = this.props.vacations.find(i => String(i.id) === this.props.match.params.id)
-        const comment = this.state.comments.filter(i => {
+        console.log(this.state.comments)
+        const vacation = this.state.comments.find(i => i.vacations_id = this.props.match.params.id)
+        const commentz = this.state.comments.filter(i => {
             return String(i.vacations_id) === this.props.match.params.id})
     
-        const arr = []
-        arr.push(comment)
+console.log(commentz)
 console.log(vacation)
 console.log(this.state.comments.vacations_id)
 
 if (!vacation) {
-    return <div>Loading...</div>
+    return <div>...</div>
 }
-if (!comment) {
-    return <div>Loading...</div>
+if (!commentz) {
+    return <div>Hurry...</div>
 }
+
         return (
             <div>
                 <p>{vacation.username}</p>
@@ -85,13 +86,11 @@ if (!comment) {
                     />
                     <button type='submit'>Add</button>
                 </form>
-                {arr.map(comment => {
-                    return <p>{comment.comment}</p>
+                
+                {commentz.map(comment => {
+                  return <p>{comment.comment}</p>
                 })}
-                {/* {this.state.comments.map(comment => {
-                    console.log(comment.vacation_id)
-                    {return comment.vacations_id === this.props.match.params.id ? <p>comment.comment</p> : null }
-                })} */}
+               
 
             </div>
         )
