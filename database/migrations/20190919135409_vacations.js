@@ -33,27 +33,6 @@ exports.up = function(knex) {
    })
 
 
-   .createTable('destination', tbl => {
-    tbl.increments();
-    tbl.text('destination', 255)
-    // foreign key here is linked to vacation table
-    tbl.integer('vacations_id')
-    .unsigned()
-    .notNullable()
-    .references('id').inTable('vacations')
-    
-  })
-
-  .createTable('activities', tbl => {
-    tbl.increments();
-    tbl.text('activities', 255)
-    // foreign key here is linked to vacation table
-    tbl.integer('vacations_id')
-    .unsigned()
-    .notNullable()
-    .references('id').inTable('vacations')
-    
-  })
 
    .createTable('comments', tbl => {
     tbl.increments();
@@ -66,14 +45,24 @@ exports.up = function(knex) {
      
    })
   
+
+
+.createTable('messages', tbl => {
+  tbl.increments();
+  tbl.text('messages', 255)
+  // foreign key here is linked to vacation table
+  tbl.integer('user_id')
+  .unsigned()
+  .notNullable()
+  .references('id').inTable('users')
+  
+})
+
 };
-
-
 exports.down = function(knex) {
     return knex.schema
+    .dropTableIfExists('messages')
     .dropTableIfExists('comments')
-    .dropTableIfExists('activities')
-    .dropTableIfExists('destination')
     .dropTableIfExists('vacations')
     .dropTableIfExists('users');
 

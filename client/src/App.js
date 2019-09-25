@@ -8,6 +8,7 @@ import PostVacation from './PostVacation';
 import VacationPage from './VacationPage';
 import axios from 'axios';
 import TravForm from './TravForm';
+import Messenger from './Messenger';
 
 class App extends React.Component {
   constructor() {
@@ -40,7 +41,7 @@ class App extends React.Component {
       <Route exact path='/vacations' render= {(props) => { return <Vacations {...props} vacations={this.state.vacations}/>} } />
       <Route exact path='/postvacation' component={ PostVacation } />
       <Route exact path='/vacationpage/:id' render= {(props) => { return <VacationPage {...props} vacations={this.state.vacations}/>} } />
-
+      <Route exact path='/messenger/:id' render= {(props) => { return <Messenger {...props} vacations={this.state.vacations}/>} } />
 
     </div>
   );

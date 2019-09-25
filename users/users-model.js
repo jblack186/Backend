@@ -2,9 +2,12 @@ const db = require('../database/dbConfig.js');
 
 module.exports = {
     find,
+    findMessages,
+    findMessagesById,
     findBy,
     findById,
-    add
+    add,
+    addMessages
 }
 
 function find() {
@@ -24,4 +27,20 @@ function add(userData) {
     .then(ids => {
         return findById(ids[0]);
     })
+}
+
+function findMessages() {
+    return db('messages')
+}
+
+function addMessages(messageData) {
+    return db('messages')
+    .insert(messageData)
+    
+}
+
+function findMessagesById(id) {
+    return db('messages')
+    .where({id})
+    .first();
 }

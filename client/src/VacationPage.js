@@ -22,7 +22,6 @@ export default class VacationPage extends React.Component {
         .get('https://vacation-planner-bw.herokuapp.com/api/vacations/comments')
             .then(res => {
                 this.setState({comments: res.data})
-            
             })
             .catch(err => {
                 console.log(err)
@@ -38,13 +37,14 @@ export default class VacationPage extends React.Component {
     
     addComment = (e) => {
         e.preventDefault();
-        this.setState({loading: true})
+       
         const {comment, vacations_id} = this.state
         axios
         .post('https://vacation-planner-bw.herokuapp.com/api/vacations/comments', {comment, vacations_id})
             .then(res => {
                 console.log(res)
-                this.setState({loading: false})
+                this.setState({comment: ''})
+
 
             })
             .catch(err => {
@@ -53,10 +53,29 @@ export default class VacationPage extends React.Component {
          
     }
 
+
+    refresh = () => {
+        const token = localStorage.getItem('token')
+        axios
+        .get('https://vacation-planner-bw.herokuapp.com/api/vacations/comments')
+            .then(res => {
+                this.setState({comments: res.data})
+                this.setState({loading: true})
+                // window.location.onChange('false');
+            })
+            .catch(err => {
+                console.log(err)
+            })
+ 
+    }
+
     render() {
+        console.log(this.props.match.params.id)
+
         console.log(this.props.vacations)
         console.log(this.state.comments)
-        const vacation = this.state.comments.find(i => i.vacations_id = this.props.match.params.id)
+        const vacation = this.props.vacations.find(i => {
+            return String(i.id) === this.props.match.params.id})
         const commentz = this.state.comments.filter(i => {
             return String(i.vacations_id) === this.props.match.params.id})
     
@@ -71,24 +90,25 @@ if (!vacation) {
 
         return (
             <div>
-                <p>{vacation.username}</p>
+                
                 <p>{vacation.destination}</p>
                 <p>{vacation.description}</p>
                 <form onSubmit={this.addComment}>
                     <input 
+                        onKeyPress={this.refresh}
                         placeholder='comment'
                         value={this.state.comment}
                         onChange={this.changeHandler}
                         name='comment'
 
                     />
-                    <button type='submit'>Add</button>
+                    <button onClick={this.refresh} onMouseLeave={this.refresh} type='submit'>Add</button>
                 </form>
                 
                 { commentz ? commentz.map(comment => {
-                  return <p>{comment.comment}</p>
+                  return <p>{comment.comment}</p> 
                 }) : null}
-               
+              
 
             </div>
         )
