@@ -36,5 +36,15 @@ Ex:
     -to post to this endpoint a user will have to enter a destination(required), date(required), description(required), cost(optional), comments(optional), and a user_id(required)-i'll be changing the users_id to username.
 
 
+GET
 
+https://vacation-planner-bw.herokuapp.com/api/vacations/comments
+
+will return all comments
+
+POST
+
+https://vacation-planner-bw.herokuapp.com/api/vacations/comments
+
+just need a comment and a vacations_id
 

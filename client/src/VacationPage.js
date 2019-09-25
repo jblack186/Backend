@@ -6,8 +6,9 @@ export default class VacationPage extends React.Component {
         super(props)
         this.state = {
             comment: '',
-            comments: '',
-           user_id: Number(this.props.match.params.id)
+            comments: [],
+            loading: false,
+           vacations_id: Number(this.props.match.params.id)
         }
         console.log(this.props)
         console.log(this.props.match.params.id)
@@ -37,22 +38,36 @@ export default class VacationPage extends React.Component {
     
     addComment = (e) => {
         e.preventDefault();
-        const {comment, user_id} = this.state
+        this.setState({loading: true})
+        const {comment, vacations_id} = this.state
         axios
-        .post('https://vacation-planner-bw.herokuapp.com/api/vacations/comments', {comment, user_id})
+        .post('https://vacation-planner-bw.herokuapp.com/api/vacations/comments', {comment, vacations_id})
             .then(res => {
                 console.log(res)
+                this.setState({loading: false})
+
             })
             .catch(err => {
                 console.log(err)
             })
-          
+         
     }
 
     render() {
+        console.log(this.props.vacations)
         const vacation = this.props.vacations.find(i => String(i.id) === this.props.match.params.id)
+        const comment = this.state.comments.filter(i => {
+            return String(i.vacations_id) === this.props.match.params.id})
+    
+        const arr = []
+        arr.push(comment)
 console.log(vacation)
+console.log(this.state.comments.vacations_id)
+
 if (!vacation) {
+    return <div>Loading...</div>
+}
+if (!comment) {
     return <div>Loading...</div>
 }
         return (
@@ -70,6 +85,14 @@ if (!vacation) {
                     />
                     <button type='submit'>Add</button>
                 </form>
+                {arr.map(comment => {
+                    return <p>{comment.comment}</p>
+                })}
+                {/* {this.state.comments.map(comment => {
+                    console.log(comment.vacation_id)
+                    {return comment.vacations_id === this.props.match.params.id ? <p>comment.comment</p> : null }
+                })} */}
+
             </div>
         )
     }
