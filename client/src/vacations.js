@@ -36,7 +36,7 @@ export default class Vacations extends React.Component {
    
 
     render(){
-        console.log(this.props)
+        console.log(this.props.vacations)
         const id = this.props.vacations.id
         const vacation = this.props.vacations.find(i => String(i.id) === this.props.match.params.id)
 

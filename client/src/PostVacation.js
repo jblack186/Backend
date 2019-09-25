@@ -12,7 +12,8 @@ export default class PostVacation extends React.Component {
                 cost: '',
                 activities: '',
                 user_id: '',
-                activity: ''
+                activity: '',
+                description: ''
                 
         }
     }
@@ -25,10 +26,10 @@ export default class PostVacation extends React.Component {
 
     addVacation = (e) => {
         e.preventDefault();
-        const { destination, user_id, start_date, end_date, cost, activities} = this.state
+        const { destination, user_id, start_date, end_date, cost, activities, description} = this.state
 
         axios
-        .post('https://vacation-planner-bw.herokuapp.com/api/vacations', {destination, user_id, start_date, end_date, cost, activities} )
+        .post('https://vacation-planner-bw.herokuapp.com/api/vacations', {destination, user_id, start_date, end_date, cost, activities, description} )
             .then(res => {
                 console.log(res)
             })
@@ -100,10 +101,10 @@ export default class PostVacation extends React.Component {
                         
                     />
                     <input
-                        placeholder='comments'
-                        value={this.state.comments}
+                        placeholder='description'
+                        value={this.state.description}
                         onChange={this.changeHandler}
-                        name='comments'
+                        name='description'
                     />
                   
                     <button type='submit'>Add</button>
