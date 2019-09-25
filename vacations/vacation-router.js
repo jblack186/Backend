@@ -108,8 +108,8 @@ router.post('/', (req, res) => {
    });
 
    router.post('/comments', (req, res) => {
-    let comments = req.body;
-  Vacation.addComment(comments)
+    let comment = req.body;
+Vacation.addComment(comment)
    .then(comments => {
      res.status(201).json(comments)
    })
