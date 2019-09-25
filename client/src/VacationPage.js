@@ -67,9 +67,7 @@ console.log(this.state.comments.vacations_id)
 if (!vacation) {
     return <div>...</div>
 }
-if (!commentz) {
-    return <div>Hurry...</div>
-}
+
 
         return (
             <div>
@@ -87,9 +85,9 @@ if (!commentz) {
                     <button type='submit'>Add</button>
                 </form>
                 
-                {commentz.map(comment => {
+                { commentz ? commentz.map(comment => {
                   return <p>{comment.comment}</p>
-                })}
+                }) : null}
                
 
             </div>
