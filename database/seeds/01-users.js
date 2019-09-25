@@ -9,6 +9,12 @@ exports.seed = function(knex, Promise) {
         {username: 'jane', password: 'doe'},
         {username: 'Rob', password: 'doe'},
         {username: 'Duane', password: 'doe'},
+        {username: 'steve', password: 'blackwell'},
+        {username: 'don', password: 'doe'},
+        {username: 'Bob', password: 'doe'},
+        {username: 'Meg', password: 'doe'},
+        {username: 'Stewie', password: 'doe'},
+
 
       ]);
   })
