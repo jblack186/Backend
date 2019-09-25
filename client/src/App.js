@@ -32,6 +32,7 @@ class App extends React.Component {
 
         }
   render() {  
+    console.log(this.state.vacations)
   return (
     <div className="App">
           {/* <Route exact path='/form' component={ TravForm } /> */}
