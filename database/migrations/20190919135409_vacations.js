@@ -14,6 +14,8 @@ exports.up = function(knex) {
     tbl.increments();
     tbl.string('destination', 256)
     .notNullable()
+    tbl.string('description', 256)
+    .notNullable()
     tbl.integer('start_date')
     .notNullable()
     tbl.integer('end_date')
@@ -54,7 +56,7 @@ exports.up = function(knex) {
   })
 
    .createTable('comments', tbl => {
-     tbl.increments();
+    tbl.increments();
      tbl.text('comment', 255)
      // foreign key here is linked to vacation table
      tbl.integer('vacations_id')
