@@ -9,7 +9,8 @@ export default class Messenger extends React.Component {
             messages: '',
             post: '',
             userId: localStorage.getItem('id'),
-            users: []
+            users: [],
+            userPostId: ''
         }
     }
 
@@ -60,8 +61,14 @@ componentDidMount = () => {
     })
 }
 
+// setId = (e) => {
+//     e.preventDefault();
+//     console.log(e.target.value)
+//     this.setState({userPostId: e.target.value })
+// }
 
     render(){
+        console.log(this.state.userPostId)
         console.log(this.state.users)
         console.log(this.state.messages)
         console.log(this.props)
@@ -71,7 +78,7 @@ componentDidMount = () => {
         return (
             <div>
                 {this.state.users.map(user => {
-                    return <Link><p>{user.username}</p></Link>
+                    return <Link exact to={`/messengerpage/${user.id}`}><p onClick={this.userPostId}>{user.username}</p></Link>
                 })}
                 <form onSubmit={this.post}>
                     <input 

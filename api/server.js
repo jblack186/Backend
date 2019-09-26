@@ -1,13 +1,13 @@
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
-const Users = require('./users/users-model.js');
-const authenticate = require('./auth/authenticate-middleware.js');
-const UserRouter = require('./users/users-router.js');
-const VacationRouter = require('./vacations/vacation-router.js');
+const Users = require('../users/users-model.js');
+const authenticate = require('../auth/authenticate-middleware.js');
+const UserRouter = require('../users/users-router.js');
+const VacationRouter = require('../vacations/vacation-router.js');
 
 const server = express();
-
+const dbEnv = process.env.DB_ENV || 'development';
 server.use(helmet());
 server.use(cors());
 server.use(express.json());

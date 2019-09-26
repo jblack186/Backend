@@ -21,11 +21,11 @@ export default class Login extends React.Component {
         e.preventDefault();
         axios.post(`https://vacation-planner-bw.herokuapp.com/api/users/login`, this.state)
         .then(response => {
-           localStorage.setItem('token', response.data.token)
-           localStorage.setItem('user', response.data.message)
-           localStorage.setItem('id', response.data.user_id)
+        localStorage.setItem('token', response.data.token)
+        localStorage.setItem('user', response.data.message)
+localStorage.setItem('id', response.data.user_id)
 
-           console.log(response.data.user_id)
+    console.log(response)
            this.props.history.push('/vacations') 
         })
         .catch(error => {
