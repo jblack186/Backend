@@ -3,20 +3,20 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 export default class Vacations extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            vacations: props.vacations,
-            user: localStorage.getItem('user'),
-            id: localStorage.getItem('id')
-        }
+constructor(props) {
+super(props)
+this.state = {
+    vacations: props.vacations,
+    user: localStorage.getItem('user'),
+    id: localStorage.getItem('id')
+}
 
-    }
+}
 
     componentDidMount(){
         const token = localStorage.getItem('token')
         axios
-        .get('https://vacation-planner-bw.herokuapp.com/api/vacations', { 'headers': {'Authorization': token}})
+    .get('https://vacation-planner-bw.herokuapp.com/api/vacations', { 'headers': {'Authorization': token}})
             .then(res => {
                 this.setState(() => ({vacations: res.data}))
                 console.log(res)
