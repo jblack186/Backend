@@ -1,26 +1,30 @@
-// Update with your config settings.
-
 module.exports = {
-
   development: {
     client: 'sqlite3',
-    useNullAsDefault: true, // needed for sqlite
     connection: {
-    filename: ' ',
+      filename: './database/vacations.db3',
     },
+    useNullAsDefault: true,
     migrations: {
-      directory: './database/migrations'
+      directory: './database/migrations',
     },
     seeds: {
-      directory: './database/seeds'
+      directory: './database/seeds',
     },
-
-    testing: {
-      client: 'sqlite3',
-      connection: {
-        filename: './data/test.db3',
-      },
+  },
+  testing: {
+    client: 'sqlite3',
+    connection: {
+      filename: './database/test.db3',
     },
+    useNullAsDefault: true,
+    migrations: {
+      directory: './database/migrations',
+    },
+    seeds: {
+      directory: './database/seeds',
+    },
+  },
     // add the following
     pool: {
       afterCreate: (conn, done) => {
@@ -28,5 +32,5 @@ module.exports = {
         conn.run('PRAGMA foreign_keys = ON', done); // turn on FK enforcement
       },
     },
-  }, 
+
 };

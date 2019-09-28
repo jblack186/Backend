@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import axios from 'axios';
 
 export default class Register extends React.Component {
-    constructor(){
-        super()
+    constructor(props){
+        super(props)
         this.state = {
             username: '',
             password: ''
@@ -22,7 +22,7 @@ export default class Register extends React.Component {
         axios.post(`https://vacation-planner-bw.herokuapp.com/api/users/register`, this.state)
         .then(response => {
             console.log(response)
-           this.props.history.push('/login') 
+           this.props.history.push('/home') 
         })
         .catch(error => {
             console.log(error)
