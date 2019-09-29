@@ -55,6 +55,10 @@ exports.up = function(knex) {
   .unsigned()
   .notNullable()
   .references('id').inTable('users')
+  tbl.integer('posted_id')
+  .unsigned()
+  .notNullable()
+  .references('id').inTable('users')
   
 })
 
