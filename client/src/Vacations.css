@@ -1,6 +1,22 @@
+.container {
+    padding-top: 80px;
+    
+}
+
 .vacation-container {
     display: flex;
     
+
+}
+
+.buttons {
+    justify-content: center;
+}
+
+.buttn {
+    border: black .5px solid;
+    margin: 5px;
+    border-radius: 5px;
 
 }
 
