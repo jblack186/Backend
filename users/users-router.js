@@ -87,6 +87,24 @@ router.get('/messages/:id', async(req, res) => {
     }   
 })
 
+
+router.post('/messages/:id', async(req, res) => {
+    const messages = req.body;
+    const { id } = req.params;
+    const user = Users.findById(id)
+    user.insert(messages)
+    .then(messages => {
+        res.status(201).json(messages)
+    })
+    .catch(err => {
+        console.log(err)
+        res.status(500).json({
+            message: 'could not add message'
+        })
+    })
+   
+})
+
 router.post('/messages', (req, res) => {
     let messageData = req.body;
    Users.addMessages(messageData)
