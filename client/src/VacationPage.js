@@ -94,6 +94,7 @@ if (!vacation) {
                 
                 <p>{vacation.destination}</p>
                 <p>{vacation.description}</p>
+                <img src='' />
                 <form onSubmit={this.addComment}>
                     <input 
                         onKeyPress={this.refresh}

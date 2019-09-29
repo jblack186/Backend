@@ -13,7 +13,8 @@ export default class PostVacation extends React.Component {
                 activities: '',
                 user_id: '',
                 activity: '',
-                description: ''
+                description: '',
+                file: ''
                 
         }
     }
@@ -106,7 +107,12 @@ export default class PostVacation extends React.Component {
                         onChange={this.changeHandler}
                         name='description'
                     />
-                  
+                    <input
+                    placeholder='choose picture'
+                    value={this.state.file}
+                    onChange={this.changeHandler}
+                    type='file'
+                    />
                     <button type='submit'>Add</button>
                 </form>
                 <button onClick={this.activity}>push</button>

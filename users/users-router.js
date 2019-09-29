@@ -87,6 +87,20 @@ router.get('/messages/:id', async(req, res) => {
     }   
 })
 
+router.post('/messages', (req, res) => {
+    let message = req.body;
+   Users.add(message)
+   .then(message => {
+     res.status(201).json(message)
+   })
+   .catch(err => {
+     console.log(err)
+     res.status(401).json({
+       message: 'could not add message'
+     })
+   })
+   });
+
   function getJwt(user) {
     const payload = {
         subject: user.id, //translates into the sub property on the token
