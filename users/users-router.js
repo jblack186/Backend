@@ -114,7 +114,7 @@ router.post('/messages', (req, res) => {
    .catch(err => {
      console.log(err)
      res.status(401).json({
-       message: 'could not add message'
+       messages: 'could not add messages'
      })
    })
    });
