@@ -57,7 +57,6 @@ export default class PostVacation extends React.Component {
     render(){
         
        
-        console.log(this.state.activities)
 
         return (
             <div>

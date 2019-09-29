@@ -4,6 +4,7 @@ const Users = require('./users-model.js');
 const bcrypt = require('bcryptjs');
 const restricted = require('../auth/authenticate-middleware.js')
 const secrets = require('../config/secrets.js')
+const db = require('../database/dbConfig.js');
 
 
 
@@ -73,28 +74,29 @@ router.get('/messages', (req, res) => {
 })
 
 router.get('/messages/:id', async(req, res) => {
-    try {
-    const {id} = req.params;
-    
-    const message = await Users.findMessagesById(id)    
-        res.status(200).json(message)
-    }
-    catch (err)  {
+   
+    Users.findMessages()
+    .where({user_id: req.params.id})
+    .then(message =>
+        res.status(200).json(message))
+    .catch(err => {
         console.log(err)
         res.status(500).json({
             message: 'could not find message'
         })
-    }   
+    })
 })
 
 
+
 router.post('/messages/:id', async(req, res) => {
-    const messages = req.body;
-    const { id } = req.params;
-    const user = Users.findById(id)
-    user.insert(messages)
-    .then(messages => {
-        res.status(201).json(messages)
+    const message = req.body
+    db('messages')
+    .where({id: req.params.id})
+    .insert(message)
+   
+    .then(message => {
+        res.status(201).json(message)
     })
     .catch(err => {
         console.log(err)
@@ -107,14 +109,14 @@ router.post('/messages/:id', async(req, res) => {
 
 router.post('/messages', (req, res) => {
     let messageData = req.body;
-   Users.addMessages(messageData)
+   Users.add(messageData)
    .then(messageData => {
      res.status(201).json(messageData)
    })
    .catch(err => {
      console.log(err)
      res.status(401).json({
-       messages: 'could not add messages'
+       messages: 'could not add message'
      })
    })
    });

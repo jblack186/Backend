@@ -8,7 +8,7 @@ module.exports = {
     findById,
     add,
     addMessages,
-    addMessageById
+    // addMessageById
 }
 
 function find() {
@@ -46,6 +46,9 @@ function findMessagesById(id) {
     .first();
 }
 
-function addMessageById() {
+// function addMessageById(message, id) {
+//     const rid = req.params.id
+//     return db('messages as m')
+//     .where({'m.id': rid})
     
-}
+// }

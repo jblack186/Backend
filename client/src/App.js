@@ -11,6 +11,7 @@ import TravForm from './TravForm';
 import Messenger from './Messenger';
 import MessagePage from './MessagePage';
 import Home from './Home';
+import MessageUser from './MessageUser';
 
 class App extends React.Component {
   constructor() {
@@ -26,7 +27,6 @@ class App extends React.Component {
       .get('https://vacation-planner-bw.herokuapp.com/api/vacations', { 'headers': {'Authorization': token}})
           .then(res => {
               this.setState(() => ({vacations: res.data}))
-              console.log(res)
           })
           .catch(err => {
               console.log(err)
@@ -34,7 +34,6 @@ class App extends React.Component {
 
         }
   render() {  
-    console.log(this.state.vacations)
   return (
     <div className="App">
           {/* <Route exact path='/form' component={ TravForm } /> */}
@@ -47,6 +46,7 @@ class App extends React.Component {
       <Route exact path='/vacationpage/:id' render= {(props) => { return <VacationPage {...props} vacations={this.state.vacations}/>} } />
       <Route exact path='/messenger/:id' render= {(props) => { return <Messenger {...props} vacations={this.state.vacations}/>} } />
       <Route exact path='/messengerpage/:id' render= {(props) => { return <MessagePage {...props} vacations={this.state.vacations}/>} } />
+      <Route exact path='/user/:user_id' render= {(props) => { return <MessageUser {...props} vacations={this.state.vacations}/>} } />
 
     </div>
   );

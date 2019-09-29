@@ -55,7 +55,6 @@ this.state = {
         const id = this.props.vacations.id
         const vacation = this.props.vacations.find(i => String(i.id) === this.props.match.params.id)
         const userId = this.state.id
-        console.log(userId)
         return (
             <div>        
                 <NavBar />
