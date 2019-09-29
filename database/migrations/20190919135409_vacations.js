@@ -49,7 +49,7 @@ exports.up = function(knex) {
 
 .createTable('messages', tbl => {
   tbl.increments();
-  tbl.text('messages', 255)
+  tbl.text('message', 255)
   // foreign key here is linked to vacation table
   tbl.integer('user_id')
   .unsigned()

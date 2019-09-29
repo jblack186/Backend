@@ -88,10 +88,10 @@ router.get('/messages/:id', async(req, res) => {
 })
 
 router.post('/messages', (req, res) => {
-    let message = req.body;
-   Users.add(message)
-   .then(message => {
-     res.status(201).json(message)
+    let messageData = req.body;
+   Users.addMessages(messageData)
+   .then(messageData => {
+     res.status(201).json(messageData)
    })
    .catch(err => {
      console.log(err)

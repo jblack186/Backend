@@ -104,5 +104,6 @@ Vacation.addComment(comment)
       res.status(500).json({message: "Could not add comment."});
   }   
   });
+  
 
   module.exports = router;

@@ -6,9 +6,9 @@ exports.seed = function(knex, Promise) {
    
       // Inserts seed entries
       return knex('messages').insert([
-        {messages: 'Can you post more pictures of your vacation', user_id: 2},
-        {messages: 'Fav part?', user_id: 1},
-        {messages: 'Im going next week', user_id: 3}
+        {message: 'Can you post more pictures of your vacation', user_id: 2},
+        {message: 'Fav part?', user_id: 1},
+        {message: 'Im going next week', user_id: 3}
       ]);
   })
     }
