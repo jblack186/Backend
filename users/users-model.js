@@ -39,7 +39,7 @@ function findMessages() {
 
 function addMessages(messageData) {
     return db('messages')
-    .insert(messageData)
+    .insert(messageData, 'id')
     
 }
 

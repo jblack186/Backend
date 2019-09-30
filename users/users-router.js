@@ -108,8 +108,7 @@ router.post('/messages/:id', async(req, res) => {
 })
 
 router.post('/messages', (req, res) => {
-    let messageData = req.body;
-   Users.add(messageData)
+   Users.addMessages(req.body)
    .then(messageData => {
      res.status(201).json(messageData)
    })

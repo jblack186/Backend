@@ -99,8 +99,8 @@ if (!vacation) {
                     <button onClick={this.refresh} onMouseLeave={this.refresh} type='submit'>Add</button>
                 </form>
                 <p>posted by <Link exact to={`/user/${vacation.user_id}`}>{vacation.username}</Link></p>
-                { commentz ? commentz.map(comment => {
-                  return <p>{comment.comment}</p> 
+                { commentz ? commentz.map(comment => { 
+                  return  <p>{comment.comment}</p> 
                 }) : null}
               
 
