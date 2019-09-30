@@ -22,7 +22,7 @@ this.state = {
 
     componentDidMount(){
 
-        $('')
+       
 
         const token = localStorage.getItem('token')
         axios
