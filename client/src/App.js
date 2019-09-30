@@ -18,6 +18,7 @@ class App extends React.Component {
     super()
     this.state = {
       vacations: [],
+      token: localStorage.getItem('token')
 
     }
   }
@@ -26,11 +27,15 @@ class App extends React.Component {
       axios
       .get('https://vacation-planner-bw.herokuapp.com/api/vacations', { 'headers': {'Authorization': token}})
           .then(res => {
+           
               this.setState(() => ({vacations: res.data}))
+             console.log('app-res', res)
           })
+          
           .catch(err => {
               console.log(err)
           })
+          
 
         }
   render() {  
@@ -46,7 +51,7 @@ class App extends React.Component {
       <Route exact path='/vacationpage/:id' render= {(props) => { return <VacationPage {...props} vacations={this.state.vacations}/>} } />
       <Route exact path='/messenger/:id' render= {(props) => { return <Messenger {...props} vacations={this.state.vacations}/>} } />
       <Route exact path='/messengerpage/:id' render= {(props) => { return <MessagePage {...props} vacations={this.state.vacations}/>} } />
-      <Route exact path='/user/:id' render= {(props) => { return <MessageUser {...props} vacations={this.state.vacations}/>} } />
+      <Route exact path='/user/:id' render= {(props) => { return <MessageUser {...props} token={this.state.token} vacations={this.state.vacations}/>} } />
 
     </div>
   );
