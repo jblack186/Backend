@@ -7,7 +7,6 @@ import Vacations from './Vacations';
 import PostVacation from './PostVacation';
 import VacationPage from './VacationPage';
 import axios from 'axios';
-import TravForm from './TravForm';
 import Messenger from './Messenger';
 import MessagePage from './MessagePage';
 import Home from './Home';
@@ -41,7 +40,6 @@ class App extends React.Component {
   render() {  
   return (
     <div className="App">
-          {/* <Route exact path='/form' component={ TravForm } /> */}
 
       <Route exact path='/register' component={ Register } />
       <Route exact path='/login' component={ Login } />
