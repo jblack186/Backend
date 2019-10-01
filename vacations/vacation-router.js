@@ -1,7 +1,9 @@
 const router = require('express').Router();
 const Vacation = require('./vacation-model.js');
 const restricted = require('../auth/authenticate-middleware.js')
+const fileUpload = require('express-fileupload');
 
+router.use(fileUpload())
 
 router.get('/', (req, res) => {
   Vacation.find()
