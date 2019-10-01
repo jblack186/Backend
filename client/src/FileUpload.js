@@ -19,7 +19,7 @@ const submit = async e => {
     formData.append('file', file)
 
     try {
-        const res = await axios.post('localhost:5000/api/vacations/upload', formData, {
+        const res = await axios.post('https://vacation-planner-bw.herokuapp.com/api/vacations/uploads', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
@@ -28,7 +28,7 @@ const submit = async e => {
        const { fileName, filePath } = res.data; 
        setUploadedFile({ filename, filePath})
     } catch(err){
-        if(err.res.status === 500) {
+        if(err.response.status === 500) {
             console.log('there was a problem with the server')
         } else {
             console.log(err.response.data.msg)

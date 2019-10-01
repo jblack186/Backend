@@ -105,7 +105,7 @@ Vacation.addComment(comment)
   }   
   });
   
-  router.post('/upload', (req, res) => {
+  router.post('/uploads', (req, res) => {
     if(req.files === null) {
       return res.status(400).json({
         message: 'no file uploaded'
