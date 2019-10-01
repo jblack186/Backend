@@ -12,7 +12,6 @@ export default class MessagePage extends React.Component {
 
     componentDidMount(){
         
-        const token = localStorage.getItem('token')
         axios
         .get('https://vacation-planner-bw.herokuapp.com/api/users/messages')
             .then(res => {
@@ -25,7 +24,6 @@ export default class MessagePage extends React.Component {
     }
 
     render(){
-        const id =
         console.log(this.props)
         console.log(this.state.messages)
         return (

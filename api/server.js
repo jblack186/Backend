@@ -5,12 +5,16 @@ const Users = require('../users/users-model.js');
 const authenticate = require('../auth/authenticate-middleware.js');
 const UserRouter = require('../users/users-router.js');
 const VacationRouter = require('../vacations/vacation-router.js');
+const fileUpload = require('express-fileupload');
 
 const server = express();
 const dbEnv = process.env.DB_ENV || 'development';
 server.use(helmet());
 server.use(cors());
 server.use(express.json());
+server.use(fileUpload());
+
+
 
 server.use('/api/users', UserRouter);
 server.use('/api/vacations', VacationRouter);
