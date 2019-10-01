@@ -19,7 +19,7 @@ const submit = async e => {
     formData.append('file', file)
 
     try {
-        const res = await axios.post('https://vacation-planner-bw.herokuapp.com/api/vacations/uploads', formData, {
+        const res = await axios.post('https://vacation-planner-bw.herokuapp.com/upload', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
