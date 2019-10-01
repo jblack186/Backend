@@ -3,7 +3,7 @@ import './App.css';
 import Login from './Login';
 import Register from './Register';
 import {Route} from 'react-router-dom';
-import Vacations from './Vacations';
+import vacations from './vacations';
 import PostVacation from './PostVacation';
 import VacationPage from './VacationPage';
 import axios from 'axios';
@@ -44,7 +44,7 @@ class App extends React.Component {
       <Route exact path='/register' component={ Register } />
       <Route exact path='/login' component={ Login } />
       <Route exact path='/home' render= {(props) => { return <Home {...props} vacations={this.state.vacations}/>} } />
-      <Route exact path='/vacations' render= {(props) => { return <Vacations {...props} vacations={this.state.vacations}/>} } />
+      <Route exact path='/vacations' render= {(props) => { return <vacations {...props} vacations={this.state.vacations}/>} } />
       <Route exact path='/postvacation' component={ PostVacation } />
       <Route exact path='/vacationpage/:id' render= {(props) => { return <VacationPage {...props} vacations={this.state.vacations}/>} } />
       <Route exact path='/messenger/:id' render= {(props) => { return <Messenger {...props} vacations={this.state.vacations}/>} } />

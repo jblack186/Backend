@@ -8,7 +8,7 @@ import './Vacations.css';
 import $ from 'jquery';
 import ReactImageMagnify from 'react-image-magnify';
 
-export default class Vacations extends React.Component {
+export default class vacations extends React.Component {
 constructor(props) {
 super(props)
 this.state = {
