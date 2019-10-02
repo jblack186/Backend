@@ -1,10 +1,10 @@
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
-const Users = require('../users/users-model.js');
-const authenticate = require('../auth/authenticate-middleware.js');
-const UserRouter = require('../users/users-router.js');
-const VacationRouter = require('../vacations/vacation-router.js');
+const Users = require('./users/users-model.js');
+const authenticate = require('./dauth/authenticate-middleware.js');
+const UserRouter = require('./users/users-router.js');
+const VacationRouter = require('./vacations/vacation-router.js');
 const fileUpload = require('express-fileupload');
 
 const server = express();
@@ -35,8 +35,7 @@ server.post('/upload', (req, res) => {
     }
   
     const file = req.files.file;
-  
-    file.mv(`client/public/uploads/${file.name}`, err => {
+    file.mv(`${__dirname}/client/public/uploads/${file.name}`, err => {
       if (err) {
         console.error(err);
         return res.status(500).send(err);

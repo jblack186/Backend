@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const Vacation = require('./vacation-model.js');
-const restricted = require('../auth/authenticate-middleware.js')
+const restricted = require('../dauth/authenticate-middleware.js')
 
 
 router.get('/', (req, res) => {
