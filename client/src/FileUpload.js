@@ -19,7 +19,7 @@ const submit = async e => {
     formData.append('file', file)
 
     try {
-        const res = await axios.post('https://vacation-planner-bw.herokuapp.com/upload', formData, {
+        const res = await axios.post('/upload', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
@@ -28,9 +28,9 @@ const submit = async e => {
        const { fileName, filePath } = res.data; 
        setUploadedFile({ filename, filePath})
     } catch(err){
-        if(err.response.status === 500) {
-            console.log('there was a problem with the server')
-        } else {
+        if (err.response.status === 500) {
+            console.log('There was a problem with the server');
+          } else {
             console.log(err.response.data.msg)
         }
     }
@@ -47,7 +47,14 @@ const submit = async e => {
             </div>
             <input type="submit" value="Upload" className="btn btn-primary btn-block mt-4" />
             </form>
-        </Fragment>
+            {uploadedFile ? (
+        <div className='row mt-5'>
+          <div className='col-md-6 m-auto'>
+            <h3 className='text-center'>{uploadedFile.fileName}</h3>
+            <img style={{ width: '100%' }} src={uploadedFile.filePath} alt='' />
+          </div>
+        </div>
+      ) : null}        </Fragment>
     )
 }
 

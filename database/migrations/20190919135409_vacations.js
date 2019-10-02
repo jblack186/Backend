@@ -24,6 +24,7 @@ exports.up = function(knex) {
     tbl.text('activities', 256)
     .notNullable()
     tbl.timestamps(true, true)
+    tbl.string('img', 256)
     // foreign key is linked to id on users table
     tbl.integer('user_id' )
     .unsigned()
