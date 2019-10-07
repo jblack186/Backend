@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import NavBar from './NavBar';
-import BoardWalk from './img/khachik-simonian-nXOB-wh4Oyc-unsplash (1).jpg';
+import BoardWalk from './img/khachik-simonian-nXOB-wh4Oyc-unsplash.jpg';
 import {ButtonToolbar, DropdownButton, Dropdown} from 'react-bootstrap';
 import './Vacations.css';
 
@@ -50,7 +50,7 @@ this.state = {
     render(){ 
       
         return (
-            <div>        
+            <Fragment>        
                 <NavBar />
                 <div className='container'>
                     
@@ -72,7 +72,7 @@ this.state = {
                         </div>
                         })}
                 </div>
-            </div>
+            </Fragment>
         )
     }
                 }
