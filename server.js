@@ -29,7 +29,7 @@ server.get('/', (req, res) => {
 
 })
 
-server.post('https://vacation-planner-bw.herokuapp.com/upload', (req, res) => {
+server.post('/upload', (req, res) => {
     if (req.files === null) {
       return res.status(400).json({ msg: 'No file uploaded' });
     } 
