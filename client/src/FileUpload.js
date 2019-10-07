@@ -14,7 +14,7 @@ const FileUpload = () => {
            end_date: '',
            user_id: '',
            activities: '',
-           file: file.name
+           img: file.name
     
        });
 console.log(file.name)
