@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import axios from 'axios';
 
 const FileUpload = () => {
@@ -14,7 +14,7 @@ const FileUpload = () => {
            end_date: '',
            user_id: '',
            activities: '',
-           img: file.name
+           img: ''
     
        });
 console.log(file.name)
@@ -42,6 +42,7 @@ const submit = async e => {
 
        const { fileName, filePath } = res.data; 
        setUploadedFile({ filename, filePath})
+       setVacation({...vacation, img: filename})
     } catch(err){
         if (err.response.status === 500) {
             console.log('There was a problem with the server');
@@ -52,7 +53,8 @@ const submit = async e => {
 
    try { 
        const re = await axios.post('https://vacation-planner-bw.herokuapp.com/api/vacations', vacation)
-    
+       
+
     }
 
     catch(err) {
@@ -71,6 +73,11 @@ const onChange = e => {
 
 }
 console.log(vacation.cost)
+// const img = () => {
+// useEffect(() => {
+//     setVacation({...vacation, img: filename});
+// }
+//     }, []);
 
     return (
         <Fragment>
