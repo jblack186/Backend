@@ -29,20 +29,18 @@ const submit = async e => {
     e.preventDefault();
     const formData = new FormData();
     formData.append('file', file)
-    console.log("yep")
-    const newVacation = {
-
-    }
+  
     try {
         const res = await axios.post('https://vacation-planner-bw.herokuapp.com/upload', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
         })
+        console.log('res', res.data.filePath)
+        setVacation({...vacation, img: res.data.fileName})
 
        const { fileName, filePath } = res.data; 
-       setUploadedFile({ filename, filePath})
-       setVacation({...vacation, img: filename})
+       setUploadedFile({ fileName, filePath})
     } catch(err){
         if (err.response.status === 500) {
             console.log('There was a problem with the server');
@@ -51,16 +49,16 @@ const submit = async e => {
         }
     }
 
-   try { 
-       const re = await axios.post('https://vacation-planner-bw.herokuapp.com/api/vacations', vacation)
+//    try { 
+//        const re = await axios.post('https://vacation-planner-bw.herokuapp.com/api/vacations', vacation)
        
 
-    }
+//     }
 
-    catch(err) {
-        console.log(err)
+//     catch(err) {
+//         console.log(err)
     
-}
+// }
 }
 
 const change = e => {
@@ -72,12 +70,13 @@ const onChange = e => {
     setVacation({[e.target.name]: e.target.value})
 
 }
-console.log(vacation.cost)
+console.log(vacation.img)
 // const img = () => {
 // useEffect(() => {
 //     setVacation({...vacation, img: filename});
 // }
 //     }, []);
+console.log(uploadedFile)
 
     return (
         <Fragment>
