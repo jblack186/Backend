@@ -31,13 +31,13 @@ const submit = async e => {
     formData.append('file', file)
   
     try {
-        const res = await axios.post('https://vacation-planner-bw.herokuapp.com/upload', formData, {
+        const res = await axios.post('/upload', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
         })
         console.log('res', res.data.filePath)
-        setVacation({...vacation, img: res.data.fileName})
+        // setVacation({...vacation, img: res.data.fileName})
 
        const { fileName, filePath } = res.data; 
        setUploadedFile({ fileName, filePath})
@@ -82,7 +82,7 @@ console.log(uploadedFile)
         <Fragment>
             <form onSubmit={submit} >
             <div className="custom-file">
-                <input
+                {/* <input
                     type="text"
                     className="form-control"
                     name="destination"
@@ -152,7 +152,7 @@ console.log(uploadedFile)
                         setVacation({...vacation,user_id: e.target.value})
                     }}
                     placeholder="user_id"
-                    />
+                    /> */}
                 <input type="file" class="custom-file-input" id="customFile" onChange={changeHandler} />
                 <label class="custom-file-label" htmlFor="customFile">
                 {filename}
