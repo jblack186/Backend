@@ -1,6 +1,6 @@
 import React from 'react';
 import NavBar from './NavBar';
-import Vacay from './img/sebastian-koenig-UYIKw9DfX4Q-unsplash.jpg';
+import Vacay from './img/pedro-lastra-XlSgaYMWsZ8-unsplash.jpg';
 import './Home.css';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
