@@ -5,6 +5,7 @@ import NavBar from './NavBar';
 import BoardWalk from './img/khachik-simonian-nXOB-wh4Oyc-unsplash.jpg';
 import {ButtonToolbar, DropdownButton, Dropdown} from 'react-bootstrap';
 import './Vacations.css';
+import FileUpload from './FileUpload';
 
 export default class vacations extends React.Component {
 constructor(props) {
@@ -46,25 +47,25 @@ this.state = {
     hover = () => {
         this.setState({active: true});
     }
-
     render(){ 
-      
+        console.log(this.props.vacations)
+
         return (
             <Fragment>        
                 <NavBar />
                 <div className='container'>
-                    
+                <FileUpload />       
                 </div>
                 <div className='vacation-content-container'>
                         {this.props.vacations.map(vac => {
                         return  <div>
                         <div onMouseOver={this.hover} className='vacation-content'>
                             <Link style={{ color: 'inherit', textDecoration: 'inherit'}} exact to ={`/vacationpage/${vac.id}`}>
-                                <img className='vacation-img' alt='just becuz' src={ BoardWalk }/>
+                                <img className='vacation-img' alt='just becuz' src={ vac.img }/> 
                                 <div>
                                 <p>{vac.destination}</p> 
                                 <p>${vac.cost}</p>
-                                <p>{vac.description}Lorem ipsum dolor sit amet, duo at nominati principes, falli muner ipsum dolor sit amet, duo at nominati principes, falli muner</p>
+                                <p>{vac.description}</p>
                                 <p>{vac.start_date}</p>
                                 </div>
                             </Link>

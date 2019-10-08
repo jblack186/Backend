@@ -116,3 +116,19 @@
     padding: 0;
     margin: 0;
 }
+
+.submit-button {
+    margin-top: 17px;
+    background-color: #007bff;
+    color: white;
+    width: 466px;
+    height: 38px;
+    border-radius: .3rem;
+}
+
+.file {
+    margin-top: 17px;
+    
+
+
+}

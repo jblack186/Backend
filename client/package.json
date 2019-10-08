@@ -11,7 +11,7 @@
     "dotenv": "^8.1.0",
     "express-fileupload": "^1.1.6-alpha.5",
     "formik": "^1.5.8",
-    "jquery": "^3.4.1",
+    "jquery": "^3.4.1",  
     "react": "^16.9.0",
     "react-bootstrap": "^1.0.0-beta.12",
     "react-dom": "^16.9.0",
